@@ -22,7 +22,7 @@
 
 <script>
 import { ref } from 'vue';
-import { fetchQuotesByAuthor } from '@/services/apiService';
+import { fetchQuotesByAuthor, fetchListTags } from '@/services/apiService';
 
 export default {
   name: 'QuotesByAuthor',
@@ -40,6 +40,16 @@ export default {
 
     // Variável para controlar a exibição do resultado
     const showResult = ref(false);
+
+    const tags = async () => {
+      try {
+        const response = await fetchListTags();
+        console.log(response);
+      } catch (error) {
+        console.error('Erro ao buscar tags:', error);
+      }
+    }
+    console.log(tags);
 
     // Função para pesquisar citações
     const search = async () => {
@@ -78,6 +88,7 @@ export default {
 
 <style scoped>
 .input-group {
-  margin-bottom: 1rem; /* Espaçamento entre os grupos de entrada */
+  margin-bottom: 1rem;
+  /* Espaçamento entre os grupos de entrada */
 }
 </style>

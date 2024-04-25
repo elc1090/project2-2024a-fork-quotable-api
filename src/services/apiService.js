@@ -39,6 +39,16 @@ export async function fetchRandomQuotes({limit, maxLength, minLength, tags, auth
     }
 }
 
+export async function fetchListTags() {
+    try {
+        const response = await axios.get(`${API_URL}/tags`);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching random quotes:', error);
+        throw error;
+    }
+}
+
 // Função para buscar lista citações aleatórias
 export async function fetchRandomListQuotes({maxLength, minLength, tags, author, sortBy, order, limit, page} = {}) {
     const validLimit = limit >= 1 && limit <= 150 ? limit : 20; //Min: 1   Max: 150   Default: 20
